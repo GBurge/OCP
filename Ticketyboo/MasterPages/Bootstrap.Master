@@ -1,0 +1,236 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Bootstrap.Master.cs"
+    Inherits="OCP.MasterPages.Bootstrap" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Operational Checklist Portal</title>
+
+    <!-- Bootstrap -->
+    <link href="~/inc/css/bootstrap.min.css" media="all" rel="stylesheet" type="text/css">
+    <!-- Your Custom Styles -->
+    <link href="~/inc/css/Styles.css" media="all" rel="stylesheet" type="text/css">
+    <link href="~/inc/css/Sidebar.css" media="all" rel="stylesheet" type="text/css">
+    <%--<link href="~/inc/css/PagerStyle.css" rel="stylesheet" />--%>
+    <link href="~/inc/css/Pagination.css" rel="stylesheet" />
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/inc/js/jquery-1.11.0.min.js"></script>
+    <!-- Normal Bootstrap plugins -->
+    <script src="/inc/js/bootstrap.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="/inc/js/jquery-ui-1.10.4.custom.min.js"></script>
+    <!-- jQuery UI Theme -->
+    <link href="/inc/css/smoothness/jquery-ui-1.10.4.custom.min.css" media="all" rel="stylesheet"
+        type="text/css" />
+
+    <!-- ******************************************************* -->
+    <!-- **** Tools for older browsers **** -->
+    <!-- ******************************************************* -->
+    <!-- Modernizr -->
+    <script src="/inc/js/modernizr-latest.js"></script>
+
+    <!-- jQuery Validation -->
+    <script src="/inc/js/jquery.validate.min.js"></script>
+
+    <!-- Support for Placeholders on IE -->
+    <script src="/inc/js/jquery.placeholder.js"></script>
+    <!-- ******************************************************* -->
+    
+    <!-- Check if the 'date' input type is not supported, 
+       if not, then add a datepicker shim from jQuery UI
+     -->
+    <script type="text/javascript">
+        $(function () {
+            $('input, textarea').placeholder();
+        });
+
+        if (!Modernizr.inputtypes.date) {
+            $(function () {
+                var dp = $("input[type='date']");
+                if (dp) {
+                    if (dp.datepicker().get(0)) {
+                        dp.datepicker().get(0).setAttribute("type", "text");
+                    }
+                }
+            });
+        }
+    </script>
+
+    <!-- Styles just for the master page -->
+    <link href="../inc/css/Master.css" rel="stylesheet" />
+    <script type="text/javascript">
+        function getPageName(url) {
+            var index = url.lastIndexOf("/") + 1;
+            var filename = url.substr(index);
+            return filename;
+        }
+
+        //$(document).ready(function () {
+        //    var a = $("a[href='" + getPageName(window.location.pathname) + "']");
+        //    //// Set the 'active' class on current menu item's parent <li>
+        //    a.parent().addClass("active");
+        //    //// Set the 'in' class on the <li> parent's <ul> to expand the drop down
+        //    a.parent().parent().addClass("in");
+
+        //    //// Or you can write it all together
+        //    ////$("a[href='" + getPageName(window.location.pathname) + "']").parent().addClass("active").parent().addClass("in");
+
+
+        //});
+
+    </script>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+
+    <!-- ********************************** -->
+    <!-- Left Navigation Area -->
+    <!-- ********************************** -->
+    <div id="sidebarWrapper">
+        <nav id="sidebarWrapperNav" class="sidebarWrapper navbar navbar-inverse">
+            <ul class="sidebarNav">
+                <li>
+                    <a href="../Default.aspx">
+                        <span class="visible-sm visible-md visible-lg">Home</span>
+                        <i class="fa fa-home fa-lg visible-xs"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="visible-sm visible-md visible-lg">About</span>
+                        <i class="fa fa-info fa-lg visible-xs"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="visible-sm visible-md visible-lg">Contact</span>
+                        <i class="fa fa-envelope-o fa-lg visible-xs"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="visible-sm visible-md visible-lg">My Checklists</span>
+                        <i class="fa fa-list-alt fa-lg visible-xs"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"
+                        data-toggle="collapse"
+                        data-target="#ulAdmin">
+                        <span class="visible-sm visible-md visible-lg">Administration<b class="caret"></b></span>
+                        <i class="fa fa-cogs fa-lg visible-xs"><b class="caret"></b></i>
+                    </a>
+                    <ul id="ulAdmin" class="collapse sidebarNavSecondLevel">
+                        <li>
+                            <a href="#">
+                                <span class="visible-sm visible-md visible-lg">Calendar Admin</span>
+                                <i class="fa fa-calendar fa-lg visible-xs"></i>
+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="visible-sm visible-md visible-lg">Category Admin</span>
+                                <i class="fa fa-folder fa-lg visible-xs"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="visible-sm visible-md visible-lg">Checklist Admin</span>
+                                <i class="fa fa-tasks fa-lg visible-xs"></i>
+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="visible-sm visible-md visible-lg">Management Company Admin</span>
+                                <i class="fa fa-university fa-lg visible-xs"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="../Views/Admin/TeamAdmin.aspx">
+                            <%--<a href="TeamAdmin">--%>
+                                <span class="visible-sm visible-md visible-lg">Team Admin</span>
+                                <i class="fa fa-users fa-lg visible-xs"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"
+                        data-toggle="collapse"
+                        data-target="#ulReport"><span class="visible-sm visible-md visible-lg">Reporting<b class="caret"></b></span>
+                        <i class="fa fa-bar-chart fa-lg visible-xs"><b class="caret"></b></i>
+                    </a>
+                    <ul id="ulReport" class="collapse sidebarNavSecondLevel">
+                        <li>
+                            <a href="#">
+                                <span class="visible-sm visible-md visible-lg">Dashboard</span>
+                                <i class="fa fa-newspaper-o fa-lg visible-xs"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="visible-sm visible-md visible-lg">Reporting Home</span>
+                                <i class="fa fa-file-pdf-o fa-lg visible-xs"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- ********************************** -->
+    <!-- Header Navigation Area -->
+    <!-- ********************************** -->
+    <div id="wrapper">
+        <nav id="headerWrapperNav" class="nav navbar navbar-default navbar-inverse" role="navigation">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav navbar-left">
+                    <li>
+                        <button id="sidebarToggle" class="btn btn-success">
+                            <i class="fa fa-angle-left"></i>
+                        </button>
+                    </li>
+                </ul>
+                <div class="navbar-header">
+                    <button type="button" data-target="#navbarCollapse"
+                        data-toggle="collapse" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="../Default.aspx" class="navbar-brand">Operational Checklist Portal</a>
+                    <%--<a href="../Default.aspx" class="navbar-brand visible-sm visible-md visible-lg">Operational Checklist Portal</a>--%>
+                    <%--<a href="../Default.aspx" class="navbar-brand visible-xs">OCP</a>--%>
+                </div>
+                <div id="navbarCollapse" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="NavBarInMasterPage.aspx">Home</a>
+                        </li>
+                        <li>
+                            <a href="#">Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+    </asp:ContentPlaceHolder>
+    <asp:ContentPlaceHolder ID="FooterPlaceHolder" runat="server">
+    </asp:ContentPlaceHolder>
+    <asp:ContentPlaceHolder ID="EndOfPageContent" runat="server">
+    </asp:ContentPlaceHolder>
+            <!-- SiteJS -->
+        <script type="text/javascript" src="../../inc/js/site.js"></script>
+</body>
+</html>
